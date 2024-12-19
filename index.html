@@ -1,0 +1,1622 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Darling</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r136/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="./wallylg.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <style>
+      @font-face {
+        font-family: novibes;
+        src: url(./novibes.ttf);
+      }
+
+      body {
+        font-family: novibes;
+        overflow-x: hidden;
+        /* background: url(./bg.png);
+      background-size: cover; */
+        background-color: #7edcff;
+        /* background-color: #DFDBE5; */
+
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21.184 20c.357-.13.72-.264 1.088-.402l1.768-.661C33.64 15.347 39.647 14 50 14c10.271 0 15.362 1.222 24.629 4.928.955.383 1.869.74 2.75 1.072h6.225c-2.51-.73-5.139-1.691-8.233-2.928C65.888 13.278 60.562 12 50 12c-10.626 0-16.855 1.397-26.66 5.063l-1.767.662c-2.475.923-4.66 1.674-6.724 2.275h6.335zm0-20C13.258 2.892 8.077 4 0 4V2c5.744 0 9.951-.574 14.85-2h6.334zM77.38 0C85.239 2.966 90.502 4 100 4V2c-6.842 0-11.386-.542-16.396-2h-6.225zM0 14c8.44 0 13.718-1.21 22.272-4.402l1.768-.661C33.64 5.347 39.647 4 50 4c10.271 0 15.362 1.222 24.629 4.928C84.112 12.722 89.438 14 100 14v-2c-10.271 0-15.362-1.222-24.629-4.928C65.888 3.278 60.562 2 50 2 39.374 2 33.145 3.397 23.34 7.063l-1.767.662C13.223 10.84 8.163 12 0 12v2z' fill='%23f7ff00' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+      }
+
+      nav a {
+        font-size: 1.5rem;
+
+        /* background: linear-gradient(90deg, #e93f2d, #fd7b25 ,#fc7573, #fed148, #8adb5b, #2fd2ea);
+    background-clip: text;
+    -webkit-background-clip: text; 
+    color: transparent; 
+    -webkit-text-fill-color: transparent;  */
+        filter: drop-shadow(0 2px black);
+        /* font-size: calc(20px + 0.5vw); */
+      }
+
+      header {
+        /* background-color: transparent!important; */
+        background: linear-gradient(white, #0799ce);
+      }
+
+      footer p {
+        color: #e93f2d;
+        font-size: large;
+        text-shadow: 0 1px black;
+      }
+      .lastfoot {
+        text-align: center;
+        padding: 5px;
+        /* background: #007bff; */
+        width: 290px;
+        margin: auto;
+        border-radius: 15px;
+        margin-top: 10px;
+        color: #0056b3;
+        font-size: 14px;
+        box-shadow: 0 4px black;
+      }
+
+      .secttitle {
+        margin: auto;
+        width: calc(300px + 2vw);
+      }
+
+      .bottomlg {
+        max-width: 300px;
+        margin: auto;
+      }
+
+      .bubbly-font {
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+        color: #ff66cc;
+      }
+
+      .character-section {
+        display: grid;
+        grid-template-rows: repeat(16, minmax(120px, auto));
+        gap: 5px;
+        padding: 20px;
+        color: #ffffff;
+        /* text-shadow: 0 1px black; */
+        font-size: large;
+      }
+
+      .character-row {
+        display: flex;
+        align-items: center;
+
+        /* background: #00000079; */
+        /* background: linear-gradient(transparent, rgba(0, 0, 0, 0.682), black); */
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgb(0, 0, 0);
+        width: 700px;
+        margin: auto;
+        border: 3px solid rgb(0, 0, 0);
+        /* box-shadow: 0 4px rgb(255, 255, 255); */
+        /* max-width: 500px; */
+        background: #cb5b5b;
+      }
+
+      .character-row img {
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        margin-right: 10px;
+      }
+
+      footer {
+        background: url("./Homepage_Footer.webp") no-repeat center center;
+        background-size: cover;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+        min-height: 500px;
+      }
+
+      #tokenomics {
+        background: linear-gradient(#7edcff, transparent, #7edcff),
+          url(./gallery/m23.jpg);
+        background-size: 1200px;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .scroll-animate {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      .scroll-triggered {
+        opacity: 1;
+        transform: translateY(0);
+        transition: all 0.6s ease;
+      }
+
+      .mobile-nav {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        /* background-color: #0000002b; */
+        /* border-radius: 30px; */
+        /* backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px); */
+        text-shadow: 0 1.5px rgb(0, 0, 0);
+        font-size: 30px;
+        /* -webkit-text-stroke: 1px rgb(255, 255, 255); */
+        background: linear-gradient(#ffffff, transparent, #ffffff),
+          url(./gallery/m22.jpg);
+        background-size: cover;
+        background-position: center;
+        height: 100vh !important;
+      }
+
+      .mobile-nav.open {
+        transform: translateX(0);
+        margin-left: 5px;
+      }
+
+      .mobile-nav a {
+        /* background: black; */
+        border-radius: 20px;
+        /* backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);  */
+        background: #0056b3;
+        box-shadow: 0 5px rgb(0, 0, 0);
+      }
+
+      .nav-link img {
+        height: 40px;
+        margin-right: 5px;
+        width: auto;
+      }
+
+      h2 {
+        text-shadow: 0 2px black;
+      }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        transition: background 0.2s ease;
+      }
+
+      .nav-link:hover {
+      }
+
+      .lefticon {
+        max-height: 50px;
+      }
+
+      .texture {
+        mix-blend-mode: color-burn;
+        z-index: -999;
+      }
+
+      .texture:before {
+        animation: patternbody 60s linear infinite;
+        background-image: url("bg.png");
+        background-size: cover;
+        content: "";
+        display: block;
+        height: 100vh;
+        left: 0;
+        pointer-events: none;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: -999;
+      }
+
+      @keyframes patternbody {
+        0%,
+        to {
+          transform: scale(1);
+        }
+
+        50% {
+          transform: scale(2);
+        }
+      }
+
+      .blurbg {
+        -webkit-backdrop-filter: blur(5px);
+      }
+
+      /* ----------------------------------------------
+ * Generated by Animista on 2024-12-16 18:52:55
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+      /**
+ * ----------------------------------------
+ * animation slide-in-blurred-top
+ * ----------------------------------------
+ */
+
+      .slide-in-blurred-top {
+        -webkit-animation: slide-in-blurred-top 1s
+          cubic-bezier(0.23, 1, 0.32, 1) both;
+        animation: slide-in-blurred-top 1s cubic-bezier(0.23, 1, 0.32, 1) both;
+      }
+
+      @-webkit-keyframes slide-in-blurred-top {
+        0% {
+          -webkit-transform: translateY(-1000px) scaleY(2.5) scaleX(0.2);
+          transform: translateY(-1000px) scaleY(2.5) scaleX(0.2);
+          -webkit-transform-origin: 50% 0%;
+          transform-origin: 50% 0%;
+          -webkit-filter: blur(40px);
+          filter: blur(40px);
+          opacity: 0;
+        }
+        100% {
+          -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+          transform: translateY(0) scaleY(1) scaleX(1);
+          -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+          -webkit-filter: blur(0);
+          filter: blur(0);
+          opacity: 1;
+        }
+      }
+      @keyframes slide-in-blurred-top {
+        0% {
+          -webkit-transform: translateY(-1000px) scaleY(2.5) scaleX(0.2);
+          transform: translateY(-1000px) scaleY(2.5) scaleX(0.2);
+          -webkit-transform-origin: 50% 0%;
+          transform-origin: 50% 0%;
+          -webkit-filter: blur(40px);
+          filter: blur(40px);
+          opacity: 0;
+        }
+        100% {
+          -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+          transform: translateY(0) scaleY(1) scaleX(1);
+          -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+          -webkit-filter: blur(0);
+          filter: blur(0);
+          opacity: 1;
+        }
+      }
+
+      .herobg {
+      }
+
+      .sep {
+        /* background-image: url(./pixel-clouds-discord-divider-clouds.gif)!important; */
+        /* background-image: url(./divider2.gif); */
+        background-image: url(./Friends.webp) !important;
+
+        /* background-image: url(./divider-stars.gif); */
+        background-repeat: repeat-x;
+        background-position: center;
+        background-size: contain;
+        height: 20px;
+        /* filter: drop-shadow(0 0 20px rgb(255, 0, 255)); */
+        /* max-width: 1400px; */
+        margin: auto;
+        /* filter: drop-shadow(0 0 20px rgb(0, 123, 255));
+    
+        mask-image: linear-gradient(transparent, blue, transparent); */
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      #tokenomics p {
+        font-size: 45px;
+        color: #ffffff;
+        -webkit-text-stroke: 2px black;
+
+        text-shadow: 0 4px black;
+      }
+
+      /* #rainbow-background {
+  width:100%;
+
+  background: linear-gradient(90deg,red, orange, yellow, green, blue, indigo, violet,indigo,blue, green,yellow,orange,red, red); 
+  background-size: 1000% 100%;  
+  animation: create-rainbow-gradient-shift 30s ease infinite;
+  text-align: center;
+}
+
+@keyframes create-rainbow-gradient-shift{
+    0%{background-position:0% 50%}
+    100%{background-position:100% 100%}
+}
+ 
+.transparent-h1 {
+    padding-top:40vh;
+    margin:0;
+    letter-spacing: 4px; 
+    font-size: 3em;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: "Arial Black";
+    opacity: 0.7;
+    color: white;
+    text-shadow: 0 0 15px black;
+} */
+
+      .absolute {
+        position: absolute;
+        inset: 0;
+      }
+
+      .herobg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .divider {
+        height: 40px;
+      }
+
+      @media (max-width: 992px) {
+        html,
+        body {
+          overflow-x: hidden !important;
+        }
+        .character-row {
+          width: 300px;
+        }
+        .mobilehidden {
+          display: none;
+        }
+
+        .maintxt {
+          margin-bottom: 120px;
+        }
+      }
+
+      @media (min-width: 992px) {
+        .mobileshow {
+          display: none;
+        }
+        .herobg {
+          position: absolute;
+          bottom: 0;
+          left: 75%;
+          transform: translateX(-50%);
+          width: auto;
+          /* Ensures the aspect ratio is preserved */
+          height: auto;
+          /* Adjusts to fit content properly */
+          max-width: fit-content;
+        }
+      }
+
+      .character-section {
+        /* background: url(./And_gravings_too.webp); */
+        background-size: contain;
+        background-repeat: no-repeat;
+        /* padding-top: 300px; */
+      }
+
+      .memes {
+        /* max-width: 1400px; */
+      }
+
+      .memes img {
+        border-radius: 20px;
+      }
+
+      .lasttxt {
+        text-align: center;
+        font-size: calc(40px + 2vw);
+        font-style: italic;
+        color: #cb5b5b;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .tknbg {
+        /* background: radial-gradient(#fed148, transparent, #fed148), url(./gallery/m4.jpg); */
+        /* background: radial-gradient(#fed148, transparent, #fed148), url(./gallery/m22.jpg); */
+        /* background: url(./Wally_Home_Letter.webp); */
+        border-radius: 30px;
+        /* background-size: 1000px; */
+        /* max-width: 300px; */
+        margin: auto;
+        background-position: center;
+        /* border: 3px solid #cb5b5b; */
+        background-repeat: no-repeat;
+      }
+
+      .copy-container {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin: auto !important;
+
+        text-align: center;
+      }
+
+      #hidden-text {
+        display: none; /* Text is hidden */
+      }
+
+      .tknbg img {
+        width: 200px;
+        height: auto;
+      }
+
+      .copy-button {
+        padding: 0.5rem 1rem;
+        background: #8adb5b;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: background 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: auto;
+        /* border: 1px solid black; */
+        box-shadow: 0 2px black;
+        text-shadow: 0 2px black;
+      }
+
+      .copy-button:hover {
+        background: #0056b3;
+      }
+
+      .copy-icon {
+        font-size: 1.2rem;
+      }
+
+      /* Toast Notification */
+      .toast {
+        position: fixed;
+        bottom: -100px; /* Initially hidden off-screen */
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(#fd2e2a, #fc7573);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transition: opacity 0.3s, bottom 0.5s ease-in-out;
+        text-shadow: 0 2px black;
+      }
+
+      .toast.show {
+        bottom: 20px;
+        opacity: 1;
+      }
+
+      .mainbn {
+        max-width: 400px;
+        z-index: 999;
+      }
+      * {
+        scroll-behavior: smooth;
+      }
+    </style>
+    <style>
+      *,
+      ::before,
+      ::after {
+        --tw-border-spacing-x: 0;
+        --tw-border-spacing-y: 0;
+        --tw-translate-x: 0;
+        --tw-translate-y: 0;
+        --tw-rotate: 0;
+        --tw-skew-x: 0;
+        --tw-skew-y: 0;
+        --tw-scale-x: 1;
+        --tw-scale-y: 1;
+        --tw-pan-x: ;
+        --tw-pan-y: ;
+        --tw-pinch-zoom: ;
+        --tw-scroll-snap-strictness: proximity;
+        --tw-gradient-from-position: ;
+        --tw-gradient-via-position: ;
+        --tw-gradient-to-position: ;
+        --tw-ordinal: ;
+        --tw-slashed-zero: ;
+        --tw-numeric-figure: ;
+        --tw-numeric-spacing: ;
+        --tw-numeric-fraction: ;
+        --tw-ring-inset: ;
+        --tw-ring-offset-width: 0px;
+        --tw-ring-offset-color: #fff;
+        --tw-ring-color: rgb(59 130 246 / 0.5);
+        --tw-ring-offset-shadow: 0 0 #0000;
+        --tw-ring-shadow: 0 0 #0000;
+        --tw-shadow: 0 0 #0000;
+        --tw-shadow-colored: 0 0 #0000;
+        --tw-blur: ;
+        --tw-brightness: ;
+        --tw-contrast: ;
+        --tw-grayscale: ;
+        --tw-hue-rotate: ;
+        --tw-invert: ;
+        --tw-saturate: ;
+        --tw-sepia: ;
+        --tw-drop-shadow: ;
+        --tw-backdrop-blur: ;
+        --tw-backdrop-brightness: ;
+        --tw-backdrop-contrast: ;
+        --tw-backdrop-grayscale: ;
+        --tw-backdrop-hue-rotate: ;
+        --tw-backdrop-invert: ;
+        --tw-backdrop-opacity: ;
+        --tw-backdrop-saturate: ;
+        --tw-backdrop-sepia: ;
+        --tw-contain-size: ;
+        --tw-contain-layout: ;
+        --tw-contain-paint: ;
+        --tw-contain-style: ;
+      }
+      ::backdrop {
+        --tw-border-spacing-x: 0;
+        --tw-border-spacing-y: 0;
+        --tw-translate-x: 0;
+        --tw-translate-y: 0;
+        --tw-rotate: 0;
+        --tw-skew-x: 0;
+        --tw-skew-y: 0;
+        --tw-scale-x: 1;
+        --tw-scale-y: 1;
+        --tw-pan-x: ;
+        --tw-pan-y: ;
+        --tw-pinch-zoom: ;
+        --tw-scroll-snap-strictness: proximity;
+        --tw-gradient-from-position: ;
+        --tw-gradient-via-position: ;
+        --tw-gradient-to-position: ;
+        --tw-ordinal: ;
+        --tw-slashed-zero: ;
+        --tw-numeric-figure: ;
+        --tw-numeric-spacing: ;
+        --tw-numeric-fraction: ;
+        --tw-ring-inset: ;
+        --tw-ring-offset-width: 0px;
+        --tw-ring-offset-color: #fff;
+        --tw-ring-color: rgb(59 130 246 / 0.5);
+        --tw-ring-offset-shadow: 0 0 #0000;
+        --tw-ring-shadow: 0 0 #0000;
+        --tw-shadow: 0 0 #0000;
+        --tw-shadow-colored: 0 0 #0000;
+        --tw-blur: ;
+        --tw-brightness: ;
+        --tw-contrast: ;
+        --tw-grayscale: ;
+        --tw-hue-rotate: ;
+        --tw-invert: ;
+        --tw-saturate: ;
+        --tw-sepia: ;
+        --tw-drop-shadow: ;
+        --tw-backdrop-blur: ;
+        --tw-backdrop-brightness: ;
+        --tw-backdrop-contrast: ;
+        --tw-backdrop-grayscale: ;
+        --tw-backdrop-hue-rotate: ;
+        --tw-backdrop-invert: ;
+        --tw-backdrop-opacity: ;
+        --tw-backdrop-saturate: ;
+        --tw-backdrop-sepia: ;
+        --tw-contain-size: ;
+        --tw-contain-layout: ;
+        --tw-contain-paint: ;
+        --tw-contain-style: ;
+      } /* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */
+      *,
+      ::after,
+      ::before {
+        box-sizing: border-box;
+        border-width: 0;
+        border-style: solid;
+        border-color: #e5e7eb;
+      }
+      ::after,
+      ::before {
+        --tw-content: "";
+      }
+      :host,
+      html {
+        line-height: 1.5;
+        -webkit-text-size-adjust: 100%;
+        -moz-tab-size: 4;
+        tab-size: 4;
+        font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+          "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        font-feature-settings: normal;
+        font-variation-settings: normal;
+        -webkit-tap-highlight-color: transparent;
+      }
+      body {
+        margin: 0;
+        line-height: inherit;
+      }
+      hr {
+        height: 0;
+        color: inherit;
+        border-top-width: 1px;
+      }
+      abbr:where([title]) {
+        -webkit-text-decoration: underline dotted;
+        text-decoration: underline dotted;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-size: inherit;
+        font-weight: inherit;
+      }
+      a {
+        color: inherit;
+        text-decoration: inherit;
+      }
+      b,
+      strong {
+        font-weight: bolder;
+      }
+      code,
+      kbd,
+      pre,
+      samp {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-feature-settings: normal;
+        font-variation-settings: normal;
+        font-size: 1em;
+      }
+      small {
+        font-size: 80%;
+      }
+      sub,
+      sup {
+        font-size: 75%;
+        line-height: 0;
+        position: relative;
+        vertical-align: baseline;
+      }
+      sub {
+        bottom: -0.25em;
+      }
+      sup {
+        top: -0.5em;
+      }
+      table {
+        text-indent: 0;
+        border-color: inherit;
+        border-collapse: collapse;
+      }
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        font-family: inherit;
+        font-feature-settings: inherit;
+        font-variation-settings: inherit;
+        font-size: 100%;
+        font-weight: inherit;
+        line-height: inherit;
+        letter-spacing: inherit;
+        color: inherit;
+        margin: 0;
+        padding: 0;
+      }
+      button,
+      select {
+        text-transform: none;
+      }
+      button,
+      input:where([type="button"]),
+      input:where([type="reset"]),
+      input:where([type="submit"]) {
+        -webkit-appearance: button;
+        background-color: transparent;
+        background-image: none;
+      }
+      :-moz-focusring {
+        outline: auto;
+      }
+      :-moz-ui-invalid {
+        box-shadow: none;
+      }
+      progress {
+        vertical-align: baseline;
+      }
+      ::-webkit-inner-spin-button,
+      ::-webkit-outer-spin-button {
+        height: auto;
+      }
+      [type="search"] {
+        -webkit-appearance: textfield;
+        outline-offset: -2px;
+      }
+      ::-webkit-search-decoration {
+        -webkit-appearance: none;
+      }
+      ::-webkit-file-upload-button {
+        -webkit-appearance: button;
+        font: inherit;
+      }
+      summary {
+        display: list-item;
+      }
+      blockquote,
+      dd,
+      dl,
+      figure,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      hr,
+      p,
+      pre {
+        margin: 0;
+      }
+      fieldset {
+        margin: 0;
+        padding: 0;
+      }
+      legend {
+        padding: 0;
+      }
+      menu,
+      ol,
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      dialog {
+        padding: 0;
+      }
+      textarea {
+        resize: vertical;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        opacity: 1;
+        color: #9ca3af;
+      }
+      [role="button"],
+      button {
+        cursor: pointer;
+      }
+      :disabled {
+        cursor: default;
+      }
+      audio,
+      canvas,
+      embed,
+      iframe,
+      img,
+      object,
+      svg,
+      video {
+        display: block;
+        vertical-align: middle;
+      }
+      img,
+      video {
+        max-width: 100%;
+        height: auto;
+      }
+      [hidden]:where(:not([hidden="until-found"])) {
+        display: none;
+      }
+      .container {
+        width: 100%;
+      }
+      @media (min-width: 640px) {
+        .container {
+          max-width: 640px;
+        }
+      }
+      @media (min-width: 768px) {
+        .container {
+          max-width: 768px;
+        }
+      }
+      @media (min-width: 1024px) {
+        .container {
+          max-width: 1024px;
+        }
+      }
+      @media (min-width: 1280px) {
+        .container {
+          max-width: 1280px;
+        }
+      }
+      @media (min-width: 1536px) {
+        .container {
+          max-width: 1536px;
+        }
+      }
+      .fixed {
+        position: fixed;
+      }
+      .absolute {
+        position: absolute;
+      }
+      .relative {
+        position: relative;
+      }
+      .inset-0 {
+        inset: 0px;
+      }
+      .left-0 {
+        left: 0px;
+      }
+      .top-0 {
+        top: 0px;
+      }
+      .z-10 {
+        z-index: 10;
+      }
+      .z-50 {
+        z-index: 50;
+      }
+      .mt-16 {
+        margin-top: 4rem;
+      }
+      .mt-4 {
+        margin-top: 1rem;
+      }
+      .flex {
+        display: flex;
+      }
+      .grid {
+        display: grid;
+      }
+      .hidden {
+        display: none;
+      }
+      .h-full {
+        height: 100%;
+      }
+      .h-screen {
+        height: 100vh;
+      }
+      .w-2\/3 {
+        width: 66.666667%;
+      }
+      .w-full {
+        width: 100%;
+      }
+      .grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .items-center {
+        align-items: center;
+      }
+      .justify-center {
+        justify-content: center;
+      }
+      .justify-between {
+        justify-content: space-between;
+      }
+      .gap-4 {
+        gap: 1rem;
+      }
+      .space-x-4 > :not([hidden]) ~ :not([hidden]) {
+        --tw-space-x-reverse: 0;
+        margin-right: calc(1rem * var(--tw-space-x-reverse));
+        margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+      }
+      .space-y-4 > :not([hidden]) ~ :not([hidden]) {
+        --tw-space-y-reverse: 0;
+        margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+        margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+      }
+      .rounded-lg {
+        border-radius: 0.5rem;
+      }
+      .bg-opacity-50 {
+        --tw-bg-opacity: 0.5;
+      }
+      .object-cover {
+        object-fit: cover;
+      }
+      .p-4 {
+        padding: 1rem;
+      }
+      .p-6 {
+        padding: 1.5rem;
+      }
+      .p-10 {
+        padding: 2.5rem;
+      }
+      .pt-20 {
+        padding-top: 5rem;
+      }
+      .text-center {
+        text-align: center;
+      }
+      .text-2xl {
+        font-size: 1.5rem;
+        line-height: 2rem;
+      }
+      .text-lg {
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+      }
+      .text-white {
+        --tw-text-opacity: 1;
+        color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+      }
+      .shadow-lg {
+        --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
+        --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color),
+          0 4px 6px -4px var(--tw-shadow-color);
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+          var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+      }
+      .shadow-md {
+        --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+          0 2px 4px -2px rgb(0 0 0 / 0.1);
+        --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color),
+          0 2px 4px -2px var(--tw-shadow-color);
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+          var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+      }
+      @media (min-width: 768px) {
+        .md\:grid-cols-3 {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+      @media (min-width: 1024px) {
+        .lg\:flex {
+          display: flex;
+        }
+        .lg\:hidden {
+          display: none;
+        }
+        .lg\:grid-cols-2 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (min-width: 1280px) {
+        .xl\:grid-cols-4 {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+      }
+    </style>
+  </head>
+
+  <body
+    class=""
+    data-aos-easing="ease"
+    data-aos-duration="400"
+    data-aos-delay="0"
+  >
+    <!-- <aside class="texture"></aside> -->
+    <header
+      id="rainbow-background"
+      class="fixed top-0 left-0 w-full blurbg shadow-md z-50"
+    >
+      <div class="sep"></div>
+      <nav class="flex justify-between items-center p-4">
+        <img src="./wallytxt2.png" class="lefticon" />
+
+        <!-- <img src="./Darling.webp" class="lefticon" /> -->
+        <button id="mobile-menu-button" class="lg:hidden text-2xl">☰</button>
+        <ul class="hidden lg:flex space-x-4">
+          <li>
+            <a href="#hero" class="nav-link" style="color: #e93f2d"
+              ><img src="./Wally_Pixel_Devil.webp" alt="Home" />Home</a
+            >
+          </li>
+          <li>
+            <a href="#tokenomics" class="nav-link" style="color: #fd7b25"
+              ><img
+                src="./Wally_Sit_Pixel.webp"
+                alt="Tokenomics"
+              />Tokenomics</a
+            >
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="https://x.com/"
+              class="nav-link"
+              style="color: #fed148"
+              ><img src="./Glitter_Wally_.webp" alt="X" />X</a
+            >
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="https://t.me/"
+              class="nav-link"
+              style="color: #8adb5b"
+              ><img src="./Wally_Pixel_Devil.webp" alt="Telegram" />Telegram</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <div
+        id="mobile-nav"
+        class="fixed top-0 left-0 w-2/3 h-full shadow-lg mobile-nav lg:hidden"
+      >
+        <!-- <button id="close-mobile-nav" class="absolute top-4 right-4 text-2xl">&times;</button> -->
+        <ul class="mt-16 space-y-4 p-4">
+          <li>
+            <a href="#hero" class="nav-link" style="color: #e93f2d"
+              ><img src="./Wally_Pixel_Devil.webp" alt="Home" />Home</a
+            >
+          </li>
+          <li>
+            <a href="#tokenomics" class="nav-link" style="color: #fd7b25"
+              ><img
+                src="./Wally_Sit_Pixel.webp"
+                alt="Tokenomics"
+              />Tokenomics</a
+            >
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="https://x.com/"
+              class="nav-link"
+              style="color: #fed148"
+              ><img src="./Glitter_Wally_.webp" alt="X" />X</a
+            >
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="https://t.me/"
+              class="nav-link"
+              style="color: #8adb5b"
+              ><img src="./Wally_Pixel_Devil.webp" alt="Telegram" />Telegram</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="sep"></div>
+    </header>
+    <main class="pt-20">
+      <!-- Hero Section -->
+      <section
+        id="hero"
+        class="relative w-full h-screen flex items-center justify-center"
+      >
+        <div class="absolute inset-0">
+          <img
+            src="./HELLO_edited (1).webp"
+            alt="Hero Background"
+            class="w-full h-full object-cover herobg"
+          />
+        </div>
+        <div
+          class="relative z-10 text-center text-white p-6 bg-opacity-50 rounded-lg"
+        >
+          <!-- <h1 class="text-4xl md:text-6xl font-bold mb-4">Darling</h1> -->
+
+          <img src="./wallytxt2.png" class="slide-in-blurred-top maintxt" />
+          <br />
+
+          <!-- Toast Notification -->
+          <div id="toast" class="toast">Contract copied successfully!</div>
+
+          <script>
+            // Copy Text Functionality
+            function copyText() {
+              // Get the hidden text
+              const textToCopy =
+                document.getElementById("hidden-text").textContent;
+
+              // Copy text to clipboard
+              navigator.clipboard
+                .writeText(textToCopy)
+                .then(() => {
+                  // Show the toast notification
+                  const toast = document.getElementById("toast");
+                  toast.classList.add("show");
+
+                  // Hide the toast after 3 seconds
+                  setTimeout(() => {
+                    toast.classList.remove("show");
+                  }, 3000);
+                })
+                .catch((err) => {
+                  console.error("Failed to copy text: ", err);
+                });
+            }
+          </script>
+          <!-- <p class="text-lg md:text-2xl mb-6">A magical place filled with fun and surprises!</p> -->
+          <!-- <img src="./wallylg.png" style="margin: auto; max-height: 300px;" /> -->
+          <!-- <a 
+              href="#tokenomics" 
+              class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-lg shadow-lg transition">
+              Explore More
+            </a> -->
+        </div>
+      </section>
+      <!-- <div class="sep"></div> -->
+      <!-- <section id="animations" class="relative h-[500px]">
+          <canvas id="three-canvas" class="w-full h-full"></canvas>
+        </section>
+        ... -->
+    </main>
+    <script
+      src="chrome-extension://ldinpeekobnhjjdofggfgjlcehhmanlj/inpage.js"
+      id="leather-provider"
+    ></script>
+
+    <!-- <main class="pt-20">
+    <section id="animations" class="relative h-[500px]">
+      <canvas id="three-canvas" class="w-full h-full"></canvas>
+    </section> -->
+
+    <div class="container">
+      <!-- <section id="tokenomics" class="p-10 text-center">
+     
+      <p class="mt-4 text-lg">0% Tax</p> <br>
+      <p class="mt-4 text-lg">LP burned</p> <Br>
+        <p class="mt-4 text-lg">0% Tax</p> <br>
+     
+    </section> -->
+      <!-- <div class="sep"></div> -->
+      <div class="row">
+        <!-- <img src="./And_gravings_too.webp" style="margin: auto;" /> -->
+        <div class="grid lg:grid-cols-2">
+          <div class="topimages">
+            <img
+              src="./And_gravings_too.webp"
+              style="margin: auto"
+              data-aos="zoom-in"
+              class="aos-init"
+            />
+            <br />
+            <img
+              src="./GuestBook1.webp"
+              class="mobilehidden aos-init"
+              data-aos="zoom-in"
+              style="margin: auto"
+            />
+            <br />
+            <img
+              src="./Wally_Heart_Balloons.webp"
+              class="mobilehidden aos-init"
+              data-aos="zoom-in"
+              style="margin: auto"
+            />
+          </div>
+          <section id="character-dialogue" class="character-section">
+            <div class="character-row aos-init" data-aos="fade-right">
+              <img src="wallylg.png" alt="Character 1" />
+              <p>
+                Darling : "THAT'S THE MOST... most fun that is... is with me!
+                OPEN THE NOUR for everybody".
+              </p>
+            </div>
+            <div class="character-row aos-init" data-aos="fade-left">
+              <img src="./houseimg.png" alt="Character 2" />
+              <p>Home : "CLANK"</p>
+            </div>
+            <div class="character-row aos-init" data-aos="fade-right">
+              <img src="wallylg.png" alt="Character 1" />
+              <p>
+                Darling : "Welcome home everybody.....well to your new home in
+                crypto that is! You too home. My name is Darling.... ok my
+                darlings".
+              </p>
+            </div>
+            <div class="character-row aos-init" data-aos="fade-left">
+              <img src="./houseimg.png" alt="Character 2" />
+              <p>Home : "SPLISH"</p>
+            </div>
+            <div class="character-row aos-init" data-aos="fade-right">
+              <img src="wallylg.png" alt="Character 1" />
+              <p>Darling : " I'm a painter... the best one yes".</p>
+            </div>
+            <div class="character-row aos-init" data-aos="fade-left">
+              <img src="./houseimg.png" alt="Character 2" />
+              <p>Home : "RING"</p>
+            </div>
+            <div class="character-row aos-init" data-aos="fade-right">
+              <img src="wallylg.png" alt="Character 1" />
+              <p>Darling : "Helllllooooo?".</p>
+            </div>
+            <div class="character-row aos-init" data-aos="fade-left">
+              <img src="npcmeme.png" alt="Character 1" />
+              <p>You : "Baby hotline... please hold me close to youuuuuu!"</p>
+            </div>
+            <div class="character-row aos-init" data-aos="fade-right">
+              <img src="wallylg.png" alt="Character 1" />
+              <p>Darling : "hahaha".</p>
+            </div>
+            <div class="character-row aos-init" data-aos="fade-left">
+              <img src="./houseimg.png" alt="Character 2" />
+              <p>Home : "HAHA"</p>
+            </div>
+
+            <div class="character-row aos-init" data-aos="fade-right">
+              <img src="wallylg.png" alt="Character 1" />
+              <p>
+                Darling : "I am the friendliest in all the neighborhood. I smile
+                and laugh with all".
+              </p>
+            </div>
+            <div class="character-row aos-init" data-aos="fade-left">
+              <img src="npcmeme.png" alt="Character 1" />
+              <p>You : Will you help me Darling?"</p>
+            </div>
+            <div class="character-row aos-init" data-aos="fade-right">
+              <img src="wallylg.png" alt="Character 1" />
+              <p>Darling : "I will always lend a hand to youuu".</p>
+            </div>
+            <div class="character-row aos-init" data-aos="fade-left">
+              <img src="./houseimg.png" alt="Character 2" />
+              <p>Home : "BANG"</p>
+            </div>
+            <div class="character-row aos-init" data-aos="fade-right">
+              <img src="npcmeme.png" alt="Character 1" />
+              <p>You : "What is that?"</p>
+            </div>
+            <div class="character-row aos-init" data-aos="fade-left">
+              <img src="wallylg.png" alt="Character 1" />
+              <p>
+                Darling : "That's the sound of the journey we'll have dancing,
+                singing, and painting the chart on our way to the top". THAT'S
+                THE MOST....... Darling
+              </p>
+            </div>
+          </section>
+        </div>
+        <!-- <img src="./GuestBook1.webp" style="margin: auto;" /> -->
+        <!-- Add more character rows here -->
+      </div>
+    </div>
+
+    <img
+      src="/GuestBook1.webp"
+      data-aos="zoom-in"
+      style="margin: auto"
+      class="mobileshow aos-init aos-animate"
+    />
+    <section id="tokenomics" class="p-10 text-center">
+      <div class="divider"></div>
+
+      <img src="./wallytkn.png" class="secttitle" /> <br />
+
+      <div class="tknbg">
+        <div class="divider"></div>
+        <img
+          src="./Ilovewally.gif.webp"
+          data-aos="zoom-in"
+          style="margin: auto; border-radius: 20px; box-shadow: 0 4px black"
+          class="aos-init"
+        />
+        <div class="divider"></div>
+        <p class="mt-4 text-lg aos-init" data-aos="fade-up">
+          Total Supply : 100M
+        </p>
+        <br />
+        <p class="mt-4 text-lg aos-init" data-aos="fade-up">
+          Liquidity Pool : LP Burned
+        </p>
+        <br />
+        <p class="mt-4 text-lg aos-init" data-aos="fade-up">
+          Tax : 0% Buy/Sell Tax
+        </p>
+        <p class="mt-4 text-lg aos-init" data-aos="fade-up">
+          Ownership : Ownership Renounced
+        </p>
+        <div class="divider"></div>
+        <div class="copy-container aos-init" data-aos="flip-left">
+          <p id="hidden-text">0x0000000000000000000000000000000000000000</p>
+          <button class="copy-button" onclick="copyText()">
+            <span class="copy-icon">📋</span> Contract
+          </button>
+        </div>
+        <div class="divider"></div>
+        <img
+          src="./Neighbor_Banner.webp"
+          data-aos="zoom-in"
+          style="margin: auto; border-radius: 20px; box-shadow: 0 4px black"
+          class="aos-init"
+        />
+        <div class="divider"></div>
+      </div>
+    </section>
+    <img
+      src="/Wally_Heart_Balloons.webp"
+      data-aos="zoom-in"
+      tyle="margin: auto;"
+      class="mobileshow aos-init aos-animate"
+    />
+    <section>
+      <img src="memetxt.png" class="secttitle" />
+      <div class="divider"></div>
+      <div
+        class="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4 memes aos-init"
+        style="margin: auto; max-width: 1200px"
+        data-aos="fade-up"
+      >
+        <div><img src="./gallery/m1.jpg" /></div>
+        <div><img src="./gallery/m12.jpg" /></div>
+
+        <div><img src="./gallery/m3.jpg" /></div>
+        <div><img src="./gallery/m4.jpg" /></div>
+        <div><img src="./gallery/m5.jpg" /></div>
+        <div><img src="./gallery/m6.jpg" /></div>
+        <div><img src="./gallery/m7.jpg" /></div>
+        <div><img src="./gallery/m8.jpg" /></div>
+        <!-- <div><img src="./gallery/m9.jpg" /></div> -->
+        <div><img src="./gallery/m10.jpg" /></div>
+        <div><img src="./gallery/m11.jpg" /></div>
+        <div><img src="./gallery/m2.jpg" /></div>
+        <div><img src="./gallery/m13.jpg" /></div>
+        <!-- <div><img src="./gallery/m14.jpg" /></div> -->
+        <div><img src="./gallery/m15.jpg" /></div>
+
+        <div><img src="./gallery/m19.jpg" /></div>
+        <div><img src="./gallery/m16.jpg" /></div>
+
+        <!-- <div><img src="./gallery/m16.jpg" /></div> -->
+        <div><img src="./gallery/m17.jpg" /></div>
+        <div><img src="./gallery/m14.jpg" /></div>
+        <div><img src="./gallery/m18.jpg" /></div>
+        <!-- <div><img src="./gallery/m19.jpg" /></div> -->
+        <div><img src="./gallery/m23.jpg" /></div>
+
+        <!-- <div><img src="./gallery/m21.jpg" /></div> -->
+        <div><img src="./gallery/m22.jpg" /></div>
+        <div><img src="./gallery/m21.jpg" /></div>
+        <!--             
+            <div><img src="./gallery/m23.jpg" /></div> -->
+        <div><img src="./gallery/m20.jpg" /></div>
+        <div><img src="./gallery/m24.jpg" /></div>
+        <div><img src="./gallery/m25.jpg" /></div>
+      </div>
+
+      <div class="divider"></div>
+    </section>
+
+    <img
+      src="./WallyCake.webp"
+      data-aos="fade-up"
+      style="margin: auto"
+      class="aos-init"
+    />
+    <!-- <h2 id="colorful-text2"></h2> -->
+    <!-- </main>
+  <div class="sep"></div> -->
+    <div class="divider"></div>
+    <h2 class="lasttxt aos-init" data-aos="fade-left">
+      Darling is your best friend. <span style="color: #fc7573">♥</span>
+    </h2>
+    <div class="divider"></div>
+    <img
+      class="bottomlg aos-init"
+      data-aos="fade-right"
+      src="./wallytxt2.png"
+    />
+    <img class="bottomlg aos-init" data-aos="fade-right" src="./wallylg.png" />
+    <!-- <footer>
+
+        <p>&copy; 2024 Darling. All rights reserved.</p>
+    </footer> -->
+    <img src="./Homepage_Footer.webp" style="margin: auto" />
+
+    <script>
+      // Three.js initialization
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+      const renderer = new THREE.WebGLRenderer({
+        canvas: document.getElementById("three-canvas"),
+        alpha: true,
+      });
+
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      camera.position.z = 5;
+
+      const geometry = new THREE.SphereGeometry(1, 32, 32);
+      const material = new THREE.MeshStandardMaterial({ color: 0xff66cc });
+      const sphere = new THREE.Mesh(geometry, material);
+
+      scene.add(sphere);
+      const light = new THREE.PointLight(0xffffff, 1, 100);
+      light.position.set(5, 5, 5);
+      scene.add(light);
+
+      function animate() {
+        requestAnimationFrame(animate);
+        sphere.rotation.x += 0.01;
+        sphere.rotation.y += 0.01;
+        renderer.render(scene, camera);
+      }
+
+      animate();
+
+      // GSAP Scroll Animations
+      document.querySelectorAll(".scroll-animate").forEach((el, index) => {
+        gsap.fromTo(
+          el,
+          {
+            opacity: 0,
+            y: 50,
+          },
+          {
+            scrollTrigger: {
+              trigger: el,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: index * 0.2,
+          }
+        );
+      });
+    </script>
+
+    <script>
+      const menuButton = document.getElementById("mobile-menu-button");
+      const mobileNav = document.getElementById("mobile-nav");
+      const closeButton = document.getElementById("close-mobile-nav");
+
+      // Toggle mobile menu visibility
+      function toggleMobileNav() {
+        if (mobileNav.classList.contains("open")) {
+          mobileNav.classList.remove("open");
+        } else {
+          mobileNav.classList.add("open");
+        }
+      }
+
+      // Open or close mobile menu on button click
+      menuButton.addEventListener("click", toggleMobileNav);
+
+      // Close mobile menu on close button click
+      closeButton.addEventListener("click", () => {
+        mobileNav.classList.remove("open");
+      });
+
+      // Close mobile menu when clicking outside the menu or the button
+      document.addEventListener("click", (event) => {
+        if (
+          !mobileNav.contains(event.target) &&
+          !menuButton.contains(event.target) &&
+          mobileNav.classList.contains("open")
+        ) {
+          mobileNav.classList.remove("open");
+        }
+      });
+    </script>
+
+    <script>
+      const text = "Tokenomics"; // Replace this with your desired text
+      const colors = ["#fd7b25", "#fed148", "#8adb5b", "#2fd2ea", "#fc7573"];
+      const colorfulText = document.getElementById("colorful-text");
+
+      text.split("").forEach((letter, index) => {
+        const span = document.createElement("span");
+        span.style.color = colors[index % colors.length];
+        span.textContent = letter;
+        colorfulText.appendChild(span);
+      });
+    </script>
+
+    <script>
+      const text = "Darling Memes!"; // Replace this with your desired text
+      const colors = ["#fd7b25", "#fed148", "#8adb5b", "#2fd2ea", "#fc7573"];
+      const colorfulText = document.getElementById("colorful-text2");
+
+      text.split("").forEach((letter, index) => {
+        const span = document.createElement("span");
+        span.style.color = colors[index % colors.length];
+        span.textContent = letter;
+        colorfulText.appendChild(span);
+      });
+    </script>
+
+    <script>
+      const text = "Darling Memes!"; // Replace this with your desired text
+      const colors = ["#fd7b25", "#fed148", "#8adb5b", "#2fd2ea", "#fc7573"];
+      const colorfulText = document.getElementById("colorful-text3");
+
+      text.split("").forEach((letter, index) => {
+        const span = document.createElement("span");
+        span.style.color = colors[index % colors.length];
+        span.textContent = letter;
+        colorfulText.appendChild(span);
+      });
+    </script>
+    <script>
+      AOS.init({
+        once: true,
+      });
+    </script>
+    <!-- Code injected by live-server -->
+    <script>
+      // <![CDATA[  <-- For SVG support
+      if ("WebSocket" in window) {
+        (function () {
+          function refreshCSS() {
+            var sheets = [].slice.call(document.getElementsByTagName("link"));
+            var head = document.getElementsByTagName("head")[0];
+            for (var i = 0; i < sheets.length; ++i) {
+              var elem = sheets[i];
+              var parent = elem.parentElement || head;
+              parent.removeChild(elem);
+              var rel = elem.rel;
+              if (
+                (elem.href && typeof rel != "string") ||
+                rel.length == 0 ||
+                rel.toLowerCase() == "stylesheet"
+              ) {
+                var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, "");
+                elem.href =
+                  url +
+                  (url.indexOf("?") >= 0 ? "&" : "?") +
+                  "_cacheOverride=" +
+                  new Date().valueOf();
+              }
+              parent.appendChild(elem);
+            }
+          }
+          var protocol =
+            window.location.protocol === "http:" ? "ws://" : "wss://";
+          var address =
+            protocol + window.location.host + window.location.pathname + "/ws";
+          var socket = new WebSocket(address);
+          socket.onmessage = function (msg) {
+            if (msg.data == "reload") window.location.reload();
+            else if (msg.data == "refreshcss") refreshCSS();
+          };
+          if (
+            sessionStorage &&
+            !sessionStorage.getItem("IsThisFirstTime_Log_From_LiveServer")
+          ) {
+            console.log("Live reload enabled.");
+            sessionStorage.setItem("IsThisFirstTime_Log_From_LiveServer", true);
+          }
+        })();
+      } else {
+        console.error(
+          "Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading."
+        );
+      }
+      // ]]>
+    </script>
+  </body>
+</html>
